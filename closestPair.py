@@ -7,7 +7,7 @@ def closestPair(points):
     points.sort(lambda x, y: cmp(x[0], y[0]))
 
     minimum_distance = None
-    minimum_pair = None
+    closest_pair = None
 
     point_count = len(points)
 
@@ -28,11 +28,11 @@ def closestPair(points):
 
             if minimum_distance is None or current_distance < minimum_distance:
                 minimum_distance = current_distance
-                minimum_pair = (left_point, right_point)
+                closest_pair = (left_point, right_point)
             j += 1
         i += 1
 
-    return minimum_pair
+    return closest_pair
 
 def main():
     import random
