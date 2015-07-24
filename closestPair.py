@@ -1,12 +1,11 @@
-import math
-
-def distance(m, n):
-    return math.hypot(m[0] - n[0], m[1] - n[1])
+def squaresum(m, n):
+    return ((m[0] - n[0]) ** 2 + (m[1] - n[1]) ** 2)
 
 def closestPair(points):
     points.sort(lambda x, y: cmp(x[0], y[0]))
 
     minimum_distance = None
+    minimum_squaresum = None
     closest_pair = None
 
     point_count = len(points)
@@ -24,10 +23,12 @@ def closestPair(points):
             if minimum_distance is not None and right_point[0] - left_point[0] >= minimum_distance:
                 break
 
-            current_distance = distance(left_point, right_point)
+            # don't take the square root unless you need to
+            current_squaresum = squaresum(left_point, right_point)
 
-            if minimum_distance is None or current_distance < minimum_distance:
-                minimum_distance = current_distance
+            if minimum_distance is None or current_squaresum < minimum_squaresum:
+                minimum_squaresum = current_squaresum
+                minimum_distance = minimum_squaresum ** 0.5
                 closest_pair = (left_point, right_point)
             j += 1
         i += 1
